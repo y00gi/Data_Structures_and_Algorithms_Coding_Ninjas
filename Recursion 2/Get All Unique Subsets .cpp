@@ -1,27 +1,22 @@
-void helper(int n, vector<int>& arr, vector<vector<int>>& ans, vector<int>& temp, int index)
+void findSubsets(int index, vector<int>& arr, vector<int>& temp, vector<vector<int>>& ans)
 {
     ans.push_back(temp);
-    if(index == n) return;
 
-    int last = -1;
-    for(int j = index; j<n; j++)
+    for(int i = index; i<(int)arr.size(); ++i)
     {
-        if(last != arr[j])
-        {
-            temp.push_back(arr[j]);
-            helper(n, arr, ans, temp, index+1);
-            last = arr[j];
-            temp.pop_back();
-        }
+        if(i != index && arr[i] == arr[i-1]) continue;
+
+        temp.push_back(arr[i]);
+        findSubsets(i + 1, arr, temp, ans);
+        temp.pop_back();
     }
 }
 
 vector<vector<int>> getUniqueSubsets(vector<int>& arr) {
     // Write Your Code Here    
     vector<vector<int>> ans;
-    int n = arr.size();
     vector<int> temp;
 
-    helper(n, arr, ans, temp, 0);
+    findSubsets(0, arr, temp, ans);
     return ans;
 }

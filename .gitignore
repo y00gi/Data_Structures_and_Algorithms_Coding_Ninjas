@@ -1,5 +1,8 @@
+# vs code
+.vscode/
+
 # Executables
-.vscode
+
 output*
 
 
