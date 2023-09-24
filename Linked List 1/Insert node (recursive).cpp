@@ -15,12 +15,21 @@
         };
 
 *****************************************************************/
+Node* InsertNode(Node *head, int pos, Node* newNode)
+{
+    
 
-int length(Node *head) {
-    // Write your code here
+    if(head==NULL) return newNode;
 
-    if(head == NULL) return 0;
+    if(pos==0)
+    {
+        newNode -> next = head;
+        return newNode;
+    }
 
-    return 1+length(head->next);
+    Node* smallHead = InsertNode(head -> next, pos-1, newNode);
+    head->next = smallHead;
 
+    return head;
+   
 }

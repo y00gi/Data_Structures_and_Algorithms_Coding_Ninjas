@@ -16,11 +16,20 @@
 
 *****************************************************************/
 
-int length(Node *head) {
-    // Write your code here
+Node *deleteNodeRec(Node *head, int pos) {
+	//Write your code here
+    if(head==NULL) return head;
 
-    if(head == NULL) return 0;
+    if(pos == 0)
+    {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
 
-    return 1+length(head->next);
+    Node* smallHead = deleteNodeRec(head->next, pos-1);
+    head->next = smallHead;
+    return head;
 
 }
